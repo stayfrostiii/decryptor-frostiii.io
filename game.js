@@ -4,12 +4,17 @@ let answer;
 
 function start()
 {
-    question = "Encrypt: ";
+    question = "";
     for (let i = 0; i < Math.floor(Math.random() * 10 + 1); i++)
     {
-        question += Math.floor(Math.random() * 10).toString();
+        let newChar = Math.floor(Math.random() * 36);
+        console.log(newChar);
+        if (newChar <= 9)
+            question += newChar.toString();
+        else
+            question += String.fromCharCode(65 + newChar - 10);
     }
-    document.getElementById("q").innerHTML = question;
+    document.getElementById("q").innerHTML = "Encrypt: " + question;
     document.getElementsByName("answer")[0].value = "";
     document.getElementById("a").innerHTML = "";
     answer = "";
@@ -28,11 +33,30 @@ function checkFor1()
     return count1;
 }
 
+function decChar(c)
+{
+    if (c == 'B')
+        return "Z";
+    else if (c == 'A')
+        return "Y";
+    return String.fromCharCode(c.charCodeAt(0) - 2);
+}
+
+function incChar(c)
+{
+    if (c == 'Y')
+        return "A";
+    else if (c == 'Z')
+        return "B";
+    return String.fromCharCode(c.charCodeAt(0) + 2);
+}
+
 function encrypt()
 {
     let endString = "";
     for (let i = 0; i < question.length; i++)
     {
+        if (question[i] >= "0" && question[i] <= "9")
         switch (question[i])
         {
             case("0"):
@@ -65,6 +89,38 @@ function encrypt()
             case("9"):
                 answer += "81";
                 break;
+        }
+        else if (question[i] <= "F")
+        {
+            switch  (question[i])
+            {
+                case("A"):
+                    answer += "1010";
+                    break;
+                case("B"):
+                    answer += "1011";
+                    break;
+                case("C"):
+                    answer += "1100";
+                    break;
+                case("D"):
+                    answer += "1101";
+                    break;
+                case("E"):
+                    answer += "1110";
+                    break;
+                case("F"):
+                    answer += "1111";
+                    break;
+            }
+        }
+        else if (question[i] <= "S")
+        {
+            answer += incChar(question[i]);
+        }
+        else
+        {
+            answer += decChar(question[i]);
         }
     }
     answer += endString;
