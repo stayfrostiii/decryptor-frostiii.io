@@ -4,10 +4,10 @@ let answer;
 
 function start()
 {
-    question = "";
+    question = "Encrypt: ";
     for (let i = 0; i < Math.floor(Math.random() * 10 + 1); i++)
     {
-        question += Math.floor(Math.random() * 3).toString();
+        question += Math.floor(Math.random() * 10).toString();
     }
     document.getElementById("q").innerHTML = question;
     document.getElementsByName("answer")[0].value = "";
@@ -30,6 +30,7 @@ function checkFor1()
 
 function encrypt()
 {
+    let endString = "";
     for (let i = 0; i < question.length; i++)
     {
         switch (question[i])
@@ -43,15 +44,30 @@ function encrypt()
             case("2"):
                 answer += checkFor1().toString();
                 break;
-            case(3):
-            case(4):
-            case(5):
-            case(6):
-            case(7):
-            case(8):
-            case(9):
+            case("3"):
+                endString += "3";
+                break;
+            case("4"):
+                endString += "4";
+                break;
+            case("5"):
+                endString += "5";
+                break;
+            case("6"):
+                endString += "6";
+                break;
+            case("7"):
+                answer += "49";
+                break;
+            case("8"):
+                answer += "64";
+                break;
+            case("9"):
+                answer += "81";
+                break;
         }
     }
+    answer += endString;
     console.log("answer = " + answer + ", question = " + question + ", length = " + question.length);
 }
 
