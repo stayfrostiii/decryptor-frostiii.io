@@ -1,20 +1,32 @@
 <!DOCTYPE html>
 <html>
-    <style>
-
-    </style>
-    <script src="https://cdn.jsdelivr.net/gh/stayfrostiii/decryptor-frostiii.io@latest/game.js"></script>
-    <!--<script src="game.js"></script>-->
-    <head>
-        The game
-    </head>
+    <link rel="stylesheet" href="index.css">
+    <!--<script src="https://cdn.jsdelivr.net/gh/stayfrostiii/decryptor-frostiii.io@latest/game.js"></script>-->
+    <script src="game.js"></script>
     <body>
         <div>
-            <button onclick="start()">start</button>
-            <p id="q"></p>
-            Answer: <input type="text" name="answer" autocomplete = "off">
-            <button onclick="sendTo()">submit</button>
-            <p id="a"></p>
+            <h1>
+                C:\Decryption_Simulator
+            </h1>
+        </div>
+        <div id="newGameButt" class="content">
+            <button onclick="start()">New Game</button>
+        </div>
+        <div class="content">
+            <p id="q">&nbsp</p>
+        </div>
+        <br>
+        <div id="textbox" class="content">
+            <input type="text" name="answer" autocomplete = "off">
+        </div>
+        <br>
+        <div class="content">
+            <button onclick="butt1()" id="button1">answer</button>
+            <button onclick="butt2()" id="button2">seed</button>
+        </div>
+        <div class="content">
+            <p id="a">&nbsp</p>
+            <p id="seed">&nbsp</p>
         </div>
     </body>
 </html> 

@@ -14,11 +14,28 @@ function start()
         else
             question += String.fromCharCode(65 + newChar - 10);
     }
-    document.getElementById("q").innerHTML = "Encrypt: " + question;
+    document.getElementById("q").innerHTML = "Decrypt: " + question;
     document.getElementsByName("answer")[0].value = "";
     document.getElementById("a").innerHTML = "";
     answer = "";
     encrypt();
+}
+
+function startFromSeed()
+{
+    if (answer != null)
+    {
+        console.log("seed: " + answer);
+        document.getElementById("newGameButt").style.visibility = "visible";
+        document.getElementById("button1").innerHTML = "answer";
+        document.getElementById("button2").innerHTML = "seed";
+        question = answer;
+        document.getElementById("q").innerHTML = "Decrypt: " + question;
+        document.getElementsByName("answer")[0].value = "";
+        document.getElementById("a").innerHTML = "";
+        answer = "";
+        encrypt();
+    }
 }
 
 function checkFor1()
@@ -127,7 +144,23 @@ function encrypt()
     console.log("answer = " + answer + ", question = " + question + ", length = " + question.length);
 }
 
-function sendTo()
+function butt1()
+{
+    if (document.getElementById("button1").innerHTML == "answer")
+        answerHere();
+    else
+        startFromSeed();
+}
+
+function butt2()
+{
+    if (document.getElementById("button2").innerHTML == "seed")
+        seedFinder();
+    else
+        changeToGame();
+}
+
+function answerHere()
 {
     let answerIn = document.getElementsByName("answer")[0].value;
     if (answerIn == answer)
@@ -140,4 +173,23 @@ function sendTo()
         document.getElementById("a").innerHTML = "False, answer = " + answer;
         console.log("False");
     }
+    document.getElementById("seed").innerHTML = "seed: " + question;
+}
+
+function seedFinder()
+{
+    document.getElementById("q").innerHTML = "Enter Seed";
+    document.getElementById("newGameButt").style.visibility = "hidden";
+
+    document.getElementById("button1").innerHTML = "submit";
+    document.getElementById("button2").innerHTML = "new game";
+    answer = null;
+}
+
+function changeToGame()
+{
+    document.getElementById("newGameButt").style.visibility = "visible";
+    document.getElementById("button2").innerHTML = "seed";
+    document.getElementById("button1").innerHTML = "answer";
+    start();
 }
