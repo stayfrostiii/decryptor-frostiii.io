@@ -33,6 +33,7 @@ function startFromSeed()
         document.getElementById("q").innerHTML = "Decrypt: " + question;
         document.getElementsByName("answer")[0].value = "";
         document.getElementById("a").innerHTML = "";
+        document.getElementById("seed").innerHTML = "";
         answer = "";
         encrypt();
     }
@@ -183,6 +184,7 @@ function seedFinder()
 
     document.getElementById("button1").innerHTML = "submit";
     document.getElementById("button2").innerHTML = "new game";
+    document.getElementById("seed").innerHTML = "";
     answer = null;
 }
 
@@ -191,5 +193,6 @@ function changeToGame()
     document.getElementById("newGameButt").style.visibility = "visible";
     document.getElementById("button2").innerHTML = "seed";
     document.getElementById("button1").innerHTML = "answer";
+    document.getElementById("seed").innerHTML = "";
     start();
 }
