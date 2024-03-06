@@ -2,41 +2,45 @@
 let question;
 let answer;
 
-function start()
+function newGame()
 {
     question = "";
-    for (let i = 0; i < Math.floor(Math.random() * 10 + 1); i++)
+    if (document.getElementById("button1").innerHTML == "submit")
     {
-        let newChar = Math.floor(Math.random() * 36);
-        console.log(newChar);
-        if (newChar <= 9)
-            question += newChar.toString();
+        if (document.getElementsByName("answer")[0].value != "")
+        {
+            question = document.getElementsByName("answer")[0].value;
+            document.getElementById("button1").innerHTML = "answer";
+        }
         else
-            question += String.fromCharCode(65 + newChar - 10);
+            return;
+    }
+    else
+    {
+        question = start();
     }
     document.getElementById("q").innerHTML = "Decrypt: " + question;
     document.getElementsByName("answer")[0].value = "";
     document.getElementById("a").innerHTML = "";
+    document.getElementById("seed").innerHTML = "";
     answer = "";
     encrypt();
+    console.log("answer = " + answer + ", question = " + question + ", length = " + question.length);
 }
 
-function startFromSeed()
+function start()
 {
-    if (answer != null)
+    let createQues = "";
+    for (let i = 0; i < Math.floor(Math.random() * 10 + 1); i++)
     {
-        console.log("seed: " + answer);
-        document.getElementById("newGameButt").style.visibility = "visible";
-        document.getElementById("button1").innerHTML = "answer";
-        document.getElementById("button2").innerHTML = "seed";
-        question = answer;
-        document.getElementById("q").innerHTML = "Decrypt: " + question;
-        document.getElementsByName("answer")[0].value = "";
-        document.getElementById("a").innerHTML = "";
-        document.getElementById("seed").innerHTML = "";
-        answer = "";
-        encrypt();
+        let newChar = Math.floor(Math.random() * 36);
+        //console.log(newChar);
+        if (newChar <= 9)
+            createQues += newChar.toString();
+        else
+            createQues += String.fromCharCode(65 + newChar - 10);
     }
+    return createQues;
 }
 
 function checkFor1()
@@ -142,7 +146,6 @@ function encrypt()
         }
     }
     answer += endString;
-    console.log("answer = " + answer + ", question = " + question + ", length = " + question.length);
 }
 
 function butt1()
@@ -150,7 +153,7 @@ function butt1()
     if (document.getElementById("button1").innerHTML == "answer")
         answerHere();
     else
-        startFromSeed();
+        newGame();
 }
 
 function butt2()
@@ -179,9 +182,9 @@ function answerHere()
 
 function seedFinder()
 {
-    document.getElementById("q").innerHTML = "Enter Seed";
     document.getElementById("newGameButt").style.visibility = "hidden";
-
+    
+    document.getElementById("q").innerHTML = "Enter Seed";
     document.getElementById("button1").innerHTML = "submit";
     document.getElementById("button2").innerHTML = "new game";
     document.getElementById("seed").innerHTML = "";
@@ -194,5 +197,5 @@ function changeToGame()
     document.getElementById("button2").innerHTML = "seed";
     document.getElementById("button1").innerHTML = "answer";
     document.getElementById("seed").innerHTML = "";
-    start();
+    newGame();
 }
