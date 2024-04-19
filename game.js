@@ -14,7 +14,7 @@ function newGame()
         }
         else
             return;
-    }
+    }//
     else
     {
         question = start();
